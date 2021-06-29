@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+}
+
+html,body
+{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
+
+header {
+   
+    background-color:salmon;
+    height: 100px;
+    
+}
+
+header h1 {
+    
+    margin-bottom: 50px;
+    position:absolute;
+    left:130px;
+    font-size: 50px;
+    font-weight: bolder;
+    color: rgb(7, 53, 71);
+    font-style: italic;
+    padding-top: 23px;
+}
+
+header nav ul{
+    position: relative;
+    text-align: center;
+    left: 125px;
+    margin-bottom: 10px;
+ 
+    
+}
+
+header nav ul li{
+    list-style-type: none;
+    display: inline-block;
+    color: rgb(82, 75, 75);
+    padding: 30px;
+   font-size: 25px;
+}
+
+h2 {
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 20px;
+    text-align: center;
+}
+main{
+
+    width: 960px;
+    margin:30px auto;
+    padding-left: 50px;
+
+
+}
+
+#one {
+    position: relative;
+    margin: 273px;
+}
+
+#sal1 {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    width: 940px;
+}
+#sal2 {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    width: 900px;
+}
+#sal3 {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    width: 900px;
+}
+
+.sal4{
+    margin-top: 30px;
+    text-align: center;
+    display: -webkit-inline-flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+table {
+    border: solid 3px black;
+}
+
+th {
+    border: solid 3px black;
+}
+
+td {
+    border: solid 3px black;
+}
+
+footer {
+    text-align: center;
+    color: black;
+    background-color: salmon;
+    font-size: 19px;
+    height: 100px;
+   
+  }
+
+#salef {
+    text-align: center;
+    color: black;
+    background-color: salmon;
+    font-size: 19px;
+    height: 100px;
+    margin-top: 200px;
+}
+  
