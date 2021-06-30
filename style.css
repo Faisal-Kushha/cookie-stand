@@ -96,6 +96,10 @@ main{
     width: 300px;
 }
 
+#newBranch {
+    border: solid 3px black;
+}
+
 table {
     border: solid 3px black;
 }
