@@ -267,6 +267,7 @@ table.appendChild(dataRow);
 }
 totals();     
 
+
 // The event
 const newBranch = document.getElementById('newBranch');
 newBranch.addEventListener('submit', handleSubmit);
@@ -311,8 +312,6 @@ function handleSubmit(event){
     dataRow.appendChild(total)
     table.appendChild(dataRow);
     
-    
-
 }
        
 
