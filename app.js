@@ -247,7 +247,6 @@ for(let z = 0 ; z < arrOfObjects.length; z++){
     second(arrOfObjects[z].amountOfCookies, arrOfObjects[z].name, arrOfObjects[z].sum)
 }
 
-
 // Total without the event
 function totals(){
 let dataRow = document.createElement('tr');
