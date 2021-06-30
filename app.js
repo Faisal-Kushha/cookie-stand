@@ -175,7 +175,7 @@ function randomNumber(min, max) {
 }
 
 let hoursOfOperation =  ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
-
+let arrOfObjects = [];
 
 function Branch(name, location, min, max, avgCookies, amountOfCookies, customer, sum ) {
     this.name = name;
@@ -186,6 +186,7 @@ function Branch(name, location, min, max, avgCookies, amountOfCookies, customer,
     this.amountOfCookies = amountOfCookies;
     this.customer = customer;
     this.sum = sum;
+    arrOfObjects.push(this);
 }
 let seattle = new Branch('Seattle', 'Seattle,USA', 23, 65, 6.3, [], [], 0 );
 let tokyo = new Branch('Tokyo', 'Tokyo,Japan', 3, 24, 1.2, [], [], 0 );
@@ -201,16 +202,10 @@ Branch.prototype.work = function(){
         }  
     }
     
-seattle.work();
-tokyo.work();
-dubai.work();
-paris.work();
-lima.work();
 
-
-let mainTag  = document.getElementById('one');
+let divTag  = document.getElementById('two');
 let table = document.createElement('table');
-mainTag.appendChild(table);
+divTag.appendChild(table);
 
 function first(){
         let headerRow = document.createElement('tr');
@@ -246,25 +241,78 @@ function second(cookies, name, sum){
         dataRow.appendChild(total)
         table.appendChild(dataRow);
 }
+for(let z = 0 ; z < arrOfObjects.length; z++){
+                
+    arrOfObjects[z].work();
+    second(arrOfObjects[z].amountOfCookies, arrOfObjects[z].name, arrOfObjects[z].sum)
+}
 
-second(seattle.amountOfCookies, seattle.name, seattle.sum)
-second(tokyo.amountOfCookies, tokyo.name, tokyo.sum)
-second(dubai.amountOfCookies, dubai.name, dubai.sum)
-second(paris.amountOfCookies, paris.name, paris.sum)
-second(lima.amountOfCookies, lima.name, lima.sum)
+// Total without the event
+function totals(){
+let dataRow = document.createElement('tr');
+let th = document.createElement ('th');
+th.textContent = ('Totals');
+dataRow.appendChild(th)
 
-        let dataRow = document.createElement('tr');
-        let th = document.createElement ('th');
-        th.textContent = ('Total');
-        dataRow.appendChild(th)
+for(let s =0; s < 14; s++){
+let td2 = document.createElement ('td');
+td2.textContent = seattle.amountOfCookies[s] + tokyo.amountOfCookies[s] + dubai.amountOfCookies[s] + paris.amountOfCookies[s] + lima.amountOfCookies[s];
+dataRow.appendChild(td2)
+}
+            
+let total = document.createElement ('td');
+total.textContent = seattle.sum + tokyo.sum + dubai.sum + paris.sum + lima.sum;
+dataRow.appendChild(total)
+table.appendChild(dataRow);
+}
+totals();     
+
+
+// The event
+const newBranch = document.getElementById('newBranch');
+newBranch.addEventListener('submit', handleSubmit);
+
+function handleSubmit(event){
+    event.preventDefault();
+
+    const newName = event.target.nameField.value;
+    console.log(newName);
+
+    const newLocation = event.target.locationField.value;
+    console.log(newLocation);
+
+    const newMin = event.target.minField.value;
+    console.log(newMin);
+
+    const newMax = event.target.maxField.value;
+    console.log(newMax);
+
+    const newAvgCookies = event.target.avgCookiesField.value;
+    console.log(newAvgCookies);
+
+    const newBranch = new Branch(newName, newLocation, newMin, newMax, newAvgCookies, [], [], 0 );
+    console.log(newBranch);
+    newBranch.work();
+    second(newBranch.amountOfCookies, newBranch.name, newBranch.sum)
+
+    // Total with the event
+    let dataRow = document.createElement('tr');
+    let th = document.createElement ('th');
+    th.textContent = ('Totals');
+    dataRow.appendChild(th)
 
     for(let s =0; s < 14; s++){
-        let td2 = document.createElement ('td');
-        td2.textContent = seattle.amountOfCookies[s] + tokyo.amountOfCookies[s] + dubai.amountOfCookies[s] + paris.amountOfCookies[s] + lima.amountOfCookies[s];
-        dataRow.appendChild(td2)
+    let td2 = document.createElement ('td');
+    td2.textContent = seattle.amountOfCookies[s] + tokyo.amountOfCookies[s] + dubai.amountOfCookies[s] + paris.amountOfCookies[s] + lima.amountOfCookies[s] + newBranch.amountOfCookies[s];
+    dataRow.appendChild(td2)
     }
+            
+    let total = document.createElement ('td');
+    total.textContent = seattle.sum + tokyo.sum + dubai.sum + paris.sum + lima.sum + newBranch.sum;
+    dataRow.appendChild(total)
+    table.appendChild(dataRow);
+    
+}
+       
 
-        let total = document.createElement ('td');
-        total.textContent = seattle.sum + tokyo.sum + dubai.sum + paris.sum + lima.sum;
-        dataRow.appendChild(total)
-        table.appendChild(dataRow);
+
