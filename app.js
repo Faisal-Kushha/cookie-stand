@@ -197,7 +197,7 @@ let lima = new Branch('Lima', 'Lima,Peru', 2, 16, 4.6, [], [], 0 );
 Branch.prototype.work = function(){
     for (let i = 0; i < hoursOfOperation.length; i++) {
         this.customer[i] = randomNumber(this.min, this.max);
-        this.amountOfCookies[i] = Math.floor(this.customer[i] * this.avgCookies);
+        this.amountOfCookies[i] = Math.ceil(this.customer[i] * this.avgCookies);
         this.sum = this.sum + this.amountOfCookies[i];
         }  
     }
@@ -251,7 +251,7 @@ for(let z = 0 ; z < arrOfObjects.length; z++){
 function totals(){
 let dataRow = document.createElement('tr');
 let th = document.createElement ('th');
-th.textContent = ('Totals');
+th.textContent = ('Total');
 dataRow.appendChild(th)
 
 for(let s =0; s < 14; s++){
@@ -281,20 +281,23 @@ function handleSubmit(event){
     const newLocation = event.target.locationField.value;
     console.log(newLocation);
 
-    const newMin = event.target.minField.value;
+    let newMin = event.target.minField.value;
+    newMin = parseInt(newMin);
     console.log(newMin);
 
-    const newMax = event.target.maxField.value;
+    let newMax = event.target.maxField.value;
+    newMax = parseInt(newMax);
     console.log(newMax);
 
-    const newAvgCookies = event.target.avgCookiesField.value;
+    let newAvgCookies = event.target.avgCookiesField.value;
+    newAvgCookies = parseFloat(newAvgCookies);
     console.log(newAvgCookies);
 
     const newBranch = new Branch(newName, newLocation, newMin, newMax, newAvgCookies, [], [], 0 );
     console.log(newBranch);
     newBranch.work();
     second(newBranch.amountOfCookies, newBranch.name, newBranch.sum)
-
+    
     // Total with the event
     let dataRow = document.createElement('tr');
     let th = document.createElement ('th');
@@ -306,6 +309,8 @@ function handleSubmit(event){
     td2.textContent = seattle.amountOfCookies[s] + tokyo.amountOfCookies[s] + dubai.amountOfCookies[s] + paris.amountOfCookies[s] + lima.amountOfCookies[s] + newBranch.amountOfCookies[s];
     dataRow.appendChild(td2)
     }
+    let deleted = table.rows.length -2
+    table.deleteRow(deleted);
             
     let total = document.createElement ('td');
     total.textContent = seattle.sum + tokyo.sum + dubai.sum + paris.sum + lima.sum + newBranch.sum;
